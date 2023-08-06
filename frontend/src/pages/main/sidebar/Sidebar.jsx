@@ -10,14 +10,17 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveSelectedMenu } from "../../../global/action";
 import { useSelector } from "react-redux";
+import{url} from '../../../global/Global.js'
 function Sidebar() {
  
   const dispatch = useDispatch();
   const location = useLocation(); 
   const [avt,setAvt]= useState("")
+  const [userNameNew,setUserNameNew]= useState("")
   const UserInfoNew = useSelector(state => state.userInfo);
   useEffect(() => {
     setAvt(localStorage.getItem("avatarUrl"));
+    setUserNameNew(localStorage.getItem("username"))
   }, [UserInfoNew]);
   
   const handleMenuClick = (path, name) => {
@@ -51,7 +54,7 @@ function Sidebar() {
   const fetchUserInfo = async (token) => {
     try {
       const response = await axios.get(
-        "http://localhost:8888/api/v1/auth/user-info",
+        `${url}/api/v1/auth/user-info`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -141,7 +144,7 @@ function Sidebar() {
           <img src={avt?avt:userInfo.avatarUrl} alt="" />
 
           <div className={styles["info"]}>
-            <span>{userInfo.username}</span>
+            <span>{userNameNew?userNameNew:userInfo.username}</span>
             <span>{userInfo.email}</span>
           </div>
           <FontAwesomeIcon icon={faRightFromBracket} />

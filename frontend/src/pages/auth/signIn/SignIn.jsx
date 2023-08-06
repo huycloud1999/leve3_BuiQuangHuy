@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { saveToken } from "../../../global/action";
+import{url} from '../../../global/Global.js'
 function SignIn(props) {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ function SignIn(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8888/api/v1/auth/signin", formData);
+      const response = await axios.post(`${url}/api/v1/auth/signin`, formData);
       // Lưu token vào Redux store
       props.saveToken(response.data.data.token);
       // Lưu token vào localStorage

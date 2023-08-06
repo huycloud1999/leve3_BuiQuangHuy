@@ -5,14 +5,9 @@ import axios from "axios";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { saveUserInfo } from "../../../global/action";
-
+import{url} from '../../../global/Global.js'
 function Profile() {
   const dispatch = useDispatch();
-  const [userInfoStore, setUserInfoStrore] = useState({
-    username: "",
-    email: "",
-    avatarUrl:""
-  });
   const [isLoading, setIsLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     firstname: null,
@@ -40,7 +35,7 @@ function Profile() {
       // Gọi API với token được lưu trong localStorage
       const token = localStorage.getItem("jwtToken");
       const response = await axios.get(
-        "http://localhost:8888/api/v1/auth/user-info",
+        `${url}/api/v1/auth/user-info`,
         {
           headers: {
             Authorization: `Bearer ${token}`, // Gửi token trong header Authorization
@@ -121,7 +116,7 @@ function Profile() {
     try {
       const token = localStorage.getItem("jwtToken");
       const response = await axios.put(
-        "http://localhost:8888/api/v1/user/updatepassword",
+        `${url}/api/v1/user/updatepassword`,
         {
           oldPassword: changePasswordForm.oldPassword,
           newPassword: changePasswordForm.newPassword,
@@ -175,7 +170,7 @@ function Profile() {
       // Gọi API để cập nhật thông tin người dùng
       const token = localStorage.getItem("jwtToken");
       await axios.put(
-        "http://localhost:8888/api/v1/user/update",
+        `${url}/api/v1/user/update`,
         {
           firstname: userInfoUpdate.firstname,
           surname: userInfoUpdate.surname,
@@ -201,7 +196,8 @@ function Profile() {
         gender: userInfoUpdate.gender,
         username: userInfoUpdate.username,
       });
-
+      dispatch(saveUserInfo(userInfo.username));
+      localStorage.setItem('username',userInfoUpdate.username);
       // Xóa thông tin trong state userInfoUpdate sau khi đã lưu thành công
       setUserInfoUpdate({
         firstname: null,
@@ -255,7 +251,7 @@ function Profile() {
         // Gọi API để upload avatar lên server
         const token = localStorage.getItem("jwtToken");
         const response = await axios.post(
-          "http://localhost:8888/api/v1/user/updateavt",
+          `${url}/api/v1/user/updateavt`,
           formData,
           {
             headers: {
@@ -269,6 +265,7 @@ function Profile() {
           avatarUrl: response.data.data.avatarUrl,
         });
         dispatch(saveUserInfo(userInfo.username,userInfo.email,userInfo.avatarUrl));
+        
         localStorage.setItem("avatarUrl", response.data.data.avatarUrl);
         alert("Avatar uploaded successfully!");
       } else {

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import{url} from '../../../global/Global.js'
 function SignUp() {
   const isLeapYear = (year) => {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
@@ -76,7 +76,7 @@ function SignUp() {
       }
       try {
         const response = await axios.post(
-          "http://localhost:8888/api/v1/auth/signup",
+          `${url}/api/v1/auth/signup`,
           dataToSend
         );
         console.log(response.data);
