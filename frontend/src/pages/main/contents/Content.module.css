@@ -1,0 +1,14 @@
+.content {
+    padding: 0;
+  }
+  
+  .header {
+    padding: 0;
+    position: sticky;
+    top:0;
+  }
+  
+  .maincontent {
+    padding: 0;
+  }
+  

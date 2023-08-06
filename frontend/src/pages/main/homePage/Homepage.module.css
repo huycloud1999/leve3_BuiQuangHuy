@@ -1,0 +1,13 @@
+.sidebar {
+    padding: 0;
+}
+.content{
+    padding: 0;
+
+}
+
+@media (max-width: 768px) {
+    .hideSidebar {
+      display: none;
+    }
+  }

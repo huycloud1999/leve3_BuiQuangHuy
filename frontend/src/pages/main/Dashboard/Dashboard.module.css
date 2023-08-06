@@ -1,0 +1,62 @@
+.container {
+  color: #333866;
+  padding: 1rem;
+
+}
+.weatherinfo {
+  background-color: #f1f3ff;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 1rem;
+  column-gap: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 2.5rem;
+}
+.locate {
+  display: flex;
+  flex-direction: column;
+}
+.locate span {
+  color: #adb1cc;
+  font-weight: 400;
+}
+.weatherinfo-right {
+        padding-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.weatherdetail {
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
+}
+.weatherdetail-icon {
+        display: flex;
+        flex-direction: column;
+        align-self:center;
+}
+.nextday {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 1rem;
+        justify-content: space-around;
+}
+.weatherdetail span {
+        font-size: 70px;
+        font-weight: 600;
+}
+.weatherdetail-icon_tem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between ;
+
+}
+
+.weatherdetail span:last-child{
+        font-size: 20px;
+        color: #adb1cc;
+        font-weight: 600;
+}

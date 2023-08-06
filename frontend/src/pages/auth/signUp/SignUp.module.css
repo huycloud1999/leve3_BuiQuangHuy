@@ -1,0 +1,202 @@
+/* signUp.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Noticia+Text&display=swap');
+/* CSS cho phần tổng thể */
+.container{
+    background-image:url("../../../assets/img/BgSignUp.jpg");
+    background-size:cover;
+    width: 100%;
+    height:100% ;
+} 
+.errorInput {
+  border-color: red;
+}
+.errorMessage{
+  color: red;
+}
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../assets/img/BgSignUp.jpg");
+    background-size: cover;
+    filter: blur(4px);
+  }
+.signUp-Container{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 65%;
+    height:70%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+}
+.left-signUp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #f0f0f0;
+    background-image:url("../../../assets/img/BgSignUp.jpg");
+    background-size:cover;
+    border-radius: 10px 0 0 10px;
+    position:relative;
+  }
+  .left-signUp h1{
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    font-size: 25px;
+    align-self: flex-start;
+    margin-left: 10%;
+    margin-bottom: 10px;
+  }
+  
+  
+  /* CSS cho logo */
+
+  .left-signUp img{
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    max-height: 200px;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+  }
+  
+  /* CSS cho văn bản */
+  .left-signUp p {
+    align-self: flex-start;
+    margin-left: 10%;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color:white;
+    max-width: 80%;
+    font-family: 'Dancing Script', cursive;
+  }
+  
+  /* CSS cho form đăng ký */
+
+.right-signUp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+}
+.right-signUp .name{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  column-gap: 1rem;
+}
+.right-signUp .name input{
+ width: 100%;
+} 
+.right-signUp p {
+  font-size: 14px;
+}
+
+.right-signUp p a {
+  text-decoration: none;
+  color: #007bff;
+}
+.right-signUp form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 65%;
+}
+
+.right-signUp h1 {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+}
+
+.right-signUp input[type="text"],
+input[type="password"],
+select {
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.right-signUp .date-of-birth{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+width: 100%;
+column-gap: 1rem;
+}
+.right-signUp .date-of-birth select{
+  width: 100%;
+}
+.right-signUp  .gender{
+  display: flex ;
+  column-gap: 2rem;
+}
+.right-signUp  .gender  label{
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.right-signUp button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.right-signUp button:hover {
+  background-color: #45a049;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Style the link */
+p a {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Remove the default underline for the link */
+p a:hover {
+  text-decoration: none;
+}
+
+
+
+
+/*Responsive*/
+@media screen and (max-width: 800px) {
+.left-signUp{
+  display: none;
+}
+.right-signUp{
+  border-radius: 10px;
+  width:200%;
+  background-image:url("../../../assets/img/BgSignUp.jpg");
+  border:none;
+  box-shadow: rgba(255, 255, 255, 0.25) 0px 30px 60px -12px inset, rgba(250, 250, 250, 0.3) 0px 18px 36px -18px inset;
+  color: white;
+}
+}

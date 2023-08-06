@@ -1,0 +1,145 @@
+/* Sidebar.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Inter:wght@300&family=Noticia+Text&family=Poppins:wght@300&display=swap");
+/* Phần ngoài cùng của Sidebar */
+.sidebar {
+  width: 100%;
+  background-color: #f2f2f2;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Poppins", sans-serif;
+  background: url('../../../assets/img/BgSideBar.jpg');
+  background-size: cover  ;
+}
+
+.sidebar img {
+  width: 100%;
+  height: 100%;
+}
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+/* Tiêu đề của các phần */
+.sidebar h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Danh sách mục menu */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar .active {
+  background: url('../../../assets/img/BgSideBar.jpg');
+  border-radius: 5px;
+  background-size: cover  ;
+  padding: 5px 0;
+}
+.sidebar .active a {
+  color: #007bff;
+}
+.sidebar .active a svg {
+  width: 23px;
+  height: 24px;
+}
+/* Mỗi mục menu */
+.sidebar li  {
+  margin-bottom: 10px;
+}
+
+/* Liên kết (menu item) */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  width: 100%;
+  transition: color 0.2s ease;
+  padding: 5px 20px;
+}
+
+/* Icon của menu item */
+.sidebar a svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+/* Hover của liên kết */
+.sidebar a:hover {
+  color: #007bff;
+}
+.user img {
+  width: 100%;
+  height: 100%;
+  max-height: 50px;
+  max-width: 50px;
+  border-radius: 10px;
+}
+.user {
+  display: flex;
+  max-height: 100px;
+  gap: 10%;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 50%;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+.user .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+.user .info span:first-child {
+  font-weight: bold;
+}
+.user .info span:last-child {
+  font-size: 0.8rem;
+}
+.user svg {
+  display: none;
+}
+@media only screen and (max-width: 1450px) {
+  .user .info span:last-child {
+    display: none;
+  }
+  .user .info span:first-child {
+    padding-top: 20%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .user .info {
+    display: none;
+  }
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around ;
+  }
+  .user svg {
+    font-size: 25px;
+    display: block;
+  }
+  .user svg:hover{
+   color: #007bff;
+   transform:scale(1.03);
+  }
+}
