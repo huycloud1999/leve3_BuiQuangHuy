@@ -35,6 +35,7 @@ function Sidebar() {
   const handleLogout = () => {
     localStorage.removeItem("jwtToken"); // Xóa token xác thực khỏi local storage
     localStorage.removeItem("avatarUrl");
+    localStorage.removeItem("username");
     // Thiết lập lại thông tin người dùng
     setUserInfo({
       username: "",
