@@ -2,12 +2,14 @@ import React from "react";
 import logo from "../../../assets/img/logo.png";
 import styles from "./SignUp.module.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import{url} from '../../../global/Global.js'
+import { useNavigate } from "react-router-dom";
 function SignUp() {
+  const navigate = useNavigate();
   const isLeapYear = (year) => {
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
   };
@@ -81,6 +83,8 @@ function SignUp() {
         );
         console.log(response.data);
         alert("Sign up successful. Please login to continue.");
+         navigate('/signin')
+        Navigate("/signin")
       } catch (error) {
         console.error(error.response.data.message);
         setErrorMessage(error.response.data.message);
