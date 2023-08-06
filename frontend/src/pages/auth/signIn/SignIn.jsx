@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { saveToken } from "../../../global/action";
 import{url} from '../../../global/Global.js'
+import { useDispatch } from "react-redux";
+import { saveSelectedMenu } from "../../../global/action";
 function SignIn(props) {
+  const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const createAcc = () => {
@@ -34,8 +37,11 @@ function SignIn(props) {
       props.saveToken(response.data.data.token);
       // Lưu token vào localStorage
       localStorage.setItem("jwtToken", response.data.data.token);
+      dispatch(saveSelectedMenu("/Home", "Home"));
       alert('Đăng nhập thành công!!')
+    
       navigate('/home')
+    
       // Xử lý các hành động khác sau khi đăng nhập thành công
     } catch (error) {
       console.error(error.response.data.message);

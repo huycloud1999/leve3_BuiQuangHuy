@@ -6,6 +6,7 @@ export const saveToken = (token) => {
   };
 };
 export const saveSelectedMenu = (path, name) => {
+  console.log(path,name)
   return {
     type: "SAVE_SELECTED_MENU",
     payload: { path, name },
