@@ -24,7 +24,7 @@ export const sidebarData = [
         icon: faHeartCircleCheck,
       },
       {
-        path: '/signin',
+        // path: '/signin',
         name: 'Log out',
         icon: faRightFromBracket,
       },

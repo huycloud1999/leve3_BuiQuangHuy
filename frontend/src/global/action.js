@@ -6,17 +6,21 @@ export const saveToken = (token) => {
   };
 };
 export const saveSelectedMenu = (path, name) => {
-  console.log(path,name)
   return {
     type: "SAVE_SELECTED_MENU",
     payload: { path, name },
   };
 };
 export const saveUserInfo = (username, email,avatarUrl) => {
-  console.log(username, email,avatarUrl)
   return {
     type: "SAVE_USER",
     payload: { username, email,avatarUrl},
+  };
+};
+export const saveLocation = (locationId) => {
+  return {
+    type: "SAVE_LOCATION",
+    payload: {locationId},
   };
 };
 export const resetStore = () => ({

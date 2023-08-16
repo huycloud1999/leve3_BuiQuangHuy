@@ -7,6 +7,9 @@ const UserAuthInfoSchema = new mongoose.Schema({
   password: { type: String, required: true },
   salt: { type: String, required: true },
   role: { type: String, default: "MEMBER", required: true },
+},
+{
+  timestamps: true,
 });
 
 const UserAuthInfoModel = mongoose.model(

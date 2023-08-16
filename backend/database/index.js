@@ -1,7 +1,7 @@
 const CombineCollection = {
     USERBASICINFO: 'UserBasicInfo',
     USERAUTHINFO: 'UserAuthInfo',
-    LOCATION: 'locations',
+    LOCATION: 'location',
     WEATHER_DATA: 'weatherdata'
   };
   

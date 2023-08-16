@@ -6,10 +6,8 @@
     padding: 1rem 1rem;
     row-gap: 1rem;
     border-radius: 10px;
-    border: 1px solid #ADB1CC;
-    color: #ADB1CC;
+
 }
-.main span{
-    color:#ADB1CC;      
+.main span{    
     font-weight: 400;
 }

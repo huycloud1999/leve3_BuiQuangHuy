@@ -3,7 +3,17 @@
   padding: 1rem;
 
 }
+.weatherinfo-right video{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+}
 .weatherinfo {
+
   background-color: #f1f3ff;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -19,7 +29,7 @@
 }
 .locate span {
   color: #adb1cc;
-  font-weight: 400;
+  font-weight: 500;
 }
 .weatherinfo-right {
         padding-top: 2.5rem;
@@ -29,8 +39,14 @@
 }
 .weatherdetail {
         display: flex;
+        align-items: center;
         justify-content: center;
         column-gap: 2rem;
+}
+.weatherdetail svg{
+      display: flex;
+      align-items: center;
+      justify-content: center;
 }
 .weatherdetail-icon {
         display: flex;

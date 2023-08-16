@@ -107,10 +107,11 @@ font-family: 'Poppins', sans-serif;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    
+    z-index: -1;
   }
   .RightProfile  .RightProfileInfo  .Avatar {
     position: relative;
+    z-index: 777;
   }
   .RightProfile  .RightProfileInfo  .Avatar div {
     background-color: rgb(255, 255, 255);
@@ -140,6 +141,12 @@ font-family: 'Poppins', sans-serif;
       row-gap: 1rem;
       font-family: 'Poppins', sans-serif;
       }
+      .LeftProfile div {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 13px;
+      }
   }
   /*==================*/
   .changePasswordForm {
@@ -155,7 +162,7 @@ font-family: 'Poppins', sans-serif;
     z-index: 9999;
     max-width: 600px;
     width: 100%;
-    background-image: url('../../../assets/img/form.jpg');
+    background-image: url('../../../assets/img/form1.jpg');
     background-size: cover;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   }

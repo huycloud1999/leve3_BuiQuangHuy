@@ -6,9 +6,11 @@
     padding: 0;
     position: sticky;
     top:0;
+    z-index: 999;
   }
   
   .maincontent {
     padding: 0;
+    z-index: -1;
   }
   

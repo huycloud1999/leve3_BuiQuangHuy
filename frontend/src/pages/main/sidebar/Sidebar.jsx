@@ -4,15 +4,15 @@ import logo from "../../../assets/img/logo.png";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { sidebarData,sidebarDataNoUser } from "./SidebarData"; // Import dữ liệu thanh bên từ tập tin SidebarData.js
-import { Link,useLocation } from "react-router-dom";
+import { Link,useLocation,Navigate, useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { saveSelectedMenu } from "../../../global/action";
 import { useSelector } from "react-redux";
 import{url} from '../../../global/Global.js'
+
 function Sidebar() {
- 
   const dispatch = useDispatch();
   const location = useLocation(); 
   const [avt,setAvt]= useState("")
@@ -33,23 +33,29 @@ function Sidebar() {
     }
   };
   const handleLogout = () => {
-    localStorage.removeItem("jwtToken"); // Xóa token xác thực khỏi local storage
-    localStorage.removeItem("avatarUrl");
-    localStorage.removeItem("username");
-    // Thiết lập lại thông tin người dùng
-    setUserInfo({
-      username: "",
-      email: "",
-    });
-    dispatch(saveSelectedMenu("/Home", "Home"));
-    // Tùy chọn, bạn có thể chuyển hướng người dùng đến trang đăng nhập sau khi đăng xuất
-    // window.location.href = "/dang-nhap";
+    const confirmed = window.confirm("Are you sure you want to log out?");
+  
+    if (confirmed) {
+      localStorage.removeItem("jwtToken");
+      localStorage.removeItem("avatarUrl");
+      localStorage.removeItem("username");
+      // localStorage.removeItem("location");
+      localStorage.removeItem("role");
+  
+      setUserInfo({
+        username: "",
+        email: "",
+      });
+  
+      dispatch(saveSelectedMenu("/Home", "Home"));
+    }
   };
 
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",
-    avatarUrl:""
+    avatarUrl:"",
+    role:""
   });
 
   const fetchUserInfo = async (token) => {
@@ -68,8 +74,10 @@ function Sidebar() {
         ...userInfo,
         username: response.data.data.username,
         email: response.data.data.authId.email,
-        avatarUrl:response.data.data.avatarUrl
+        avatarUrl:response.data.data.avatarUrl,
+        role: response.data.data.authId.role,
       });
+      localStorage.setItem("role",response.data.data.authId.role)
     } catch (error) {
       console.error("Error fetching user info:", error);
     }
