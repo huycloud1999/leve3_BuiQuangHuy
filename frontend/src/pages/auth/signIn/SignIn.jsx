@@ -39,12 +39,12 @@ function SignIn(props) {
       localStorage.setItem("jwtToken", response.data.data.token);
       dispatch(saveSelectedMenu("/Home", "Home"));
       alert('Đăng nhập thành công!!')
-    
+                                                                                                         
       navigate('/home')
     
       // Xử lý các hành động khác sau khi đăng nhập thành công
     } catch (error) {
-      console.error(error.response.data.message);
+      // console.error(error.response.data.message);
       setErrorMessage(error.response.data.message);
     }
   };

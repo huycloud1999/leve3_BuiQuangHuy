@@ -13,8 +13,18 @@ import styles from "./users.module.css";
 function Users() {
   const role = localStorage.getItem("role");
   const [usersData, setUsersData] = useState([]);
+  const [addErr, setAddErr] = useState();
   const [updateData, setUpdateData] = useState();
   const [editingUser, setEditingUser] = useState(null);
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    username: "",
+    password: "",
+    day: "",
+    month: "",
+    year: "",
+  });
+  useEffect(()=>{console.log(userInfo)},[userInfo])
   const [isEditing, setIsEditing] = useState(false);
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -31,25 +41,24 @@ function Users() {
         ...prevUser.authId,
         role: newRole,
       },
-    })
-    );
+    }));
     setUpdateData((prevUser) => ({
       ...prevUser,
       role: newRole,
-    }))
+    }));
   };
   const handleGenderChange = (e) => {
-    const newGender= e.target.value;
+    const newGender = e.target.value;
     setEditingUser((prevUser) => ({
       ...prevUser,
       gender: newGender,
-    }))
+    }));
     setUpdateData((prevUser) => ({
       ...prevUser,
       gender: newGender,
-    }))
+    }));
   };
-  
+  const [showAddUserForm, setShowAddUserForm] = useState(false);
   const handleEditClick = (id) => {
     const userToEdit = id.row;
     setEditingUser(userToEdit);
@@ -98,12 +107,68 @@ function Users() {
             },
           }
         );
-        alert("Cập nhật dữ liệu thành công")
+        alert("Cập nhật dữ liệu thành công");
       }
     } catch (error) {
       console.error("Error saving changes:", error);
     }
   };
+  const handleAddUser = async () => {
+    try {
+      const response = await axios.post(
+        `${url}/api/v1/auth/signup`,
+        userInfo 
+      );
+
+        setShowAddUserForm(false);
+        console.log(response.data.message)
+        
+        setUserInfo({
+          email: "",
+          username: "",
+          password: "",
+          day: "",
+          month: "",
+          year: "",
+        });
+      
+    } catch (error) {
+      console.error("Error adding user:", error.response.data.message);
+      setAddErr(error.response.data.message)
+      alert(error.response.data.message);
+    }
+  };
+  
+  
+  const handleDeleteClick = (id) => {
+    const userToDelete = id.row;
+    console.log(id)
+    if (window.confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+      deleteUser(userToDelete);
+    }
+  };
+  const deleteUser = async (user) => {
+    try {
+      const jwtToken = localStorage.getItem("jwtToken");
+      if (jwtToken) {
+        const response = await axios.delete(
+          `${url}/api/v1/admin/deleteuser/${user.authId._id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwtToken}`,
+            },
+          }
+        );
+        alert("Xóa người dùng thành công");
+        // Sau khi xóa thành công, gọi lại fetchDataUsers để cập nhật danh sách
+        fetchDataUsers(jwtToken);
+      }
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
+  
+  
   useEffect(() => {
     const jwtToken = localStorage.getItem("jwtToken");
     if (jwtToken) {
@@ -116,9 +181,7 @@ function Users() {
       fetchDataUsers(jwtToken);
     }
   }, [isEditing]);
-  useEffect(() => {
-    console.log(updateData);
-  }, [updateData]);
+
 
   const columns = [
     {
@@ -184,25 +247,41 @@ function Users() {
           <GridActionsCellItem
             icon={<DeleteIcon />}
             label="Delete"
+            onClick={(event) => {
+              event.stopPropagation();
+              handleDeleteClick(id);
+            }}
             color="inherit"
           />,
         ];
       },
     },
   ];
+  const handleAddUserClick = () => {
+    setShowAddUserForm(true);
+  };
   const handleCancelEdit = () => {
     setEditingUser(null);
     setIsEditing(false);
   };
-  
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserInfo((prevInfo) => ({
+      ...prevInfo,
+      [name]: value,
+    }));
+  };
   return (
     <div>
       {role === "ADMIN" ? (
         <Box padding="0.5rem">
           <Box>
-            <h3>Users</h3>
-            <h5>List Users</h5>
+            <h3>List Users</h3>
           </Box>
+          <button className={styles.addButton} onClick={handleAddUserClick}>
+            <AddIcon /> Add User
+          </button>
           <Box height="75vh" className={styles["table"]}>
             {isEditing ? (
               <div className={styles.editForm}>
@@ -329,6 +408,53 @@ function Users() {
                   },
                 }}
               />
+            )}
+            {showAddUserForm && (
+              <div className={styles["addUserForm"]}>
+                <form>
+                  <h3>Add New User</h3>
+                  <span style={{textAlign:"center",margin:'0 auto',color:'red'}}>{addErr}</span>
+                  <div>
+                    <label>Email:</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      onChange={handleInputChange}
+                      value={userInfo.email}
+                    />
+                  </div>
+                  <div>
+                    <label>UserName:</label>
+                    <input
+                      type="text"
+                      name="username"
+                      required
+                      onChange={handleInputChange}
+                      value={userInfo.username}
+                    />
+                  </div>
+                  <div>
+                    <label>Password:</label>
+                    <input
+                      type="password"
+                      name="password"
+                      required
+                      onChange={handleInputChange}
+                      value={userInfo.password}
+                    />
+                  </div>
+                  <div className={styles["addUserBtn"]}>
+                    <button type="button" onClick={handleAddUser}>Add</button>
+                    <button
+                      type="button"
+                      onClick={() => setShowAddUserForm(false)}
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
             )}
           </Box>
         </Box>
