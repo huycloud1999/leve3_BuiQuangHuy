@@ -15,6 +15,7 @@ import{url} from '../../../global/Global.js'
 function Sidebar() {
   const dispatch = useDispatch();
   const location = useLocation(); 
+  const navigate = useNavigate();
   const [avt,setAvt]= useState("")
   const [userNameNew,setUserNameNew]= useState("")
   const UserInfoNew = useSelector(state => state.userInfo);
@@ -25,32 +26,27 @@ function Sidebar() {
   
   const handleMenuClick = (path, name) => {
     if (name === "Log out") {
-      // Xử lý đăng xuất
-      handleLogout(); // Giả sử bạn đã định nghĩa hàm handleLogout như đã hướng dẫn ở trên.
-    } else {
-      // Xử lý các menu khác
+
+      handleLogout(); 
+      
       dispatch(saveSelectedMenu(path, name));
     }
   };
   const handleLogout = () => {
     const confirmed = window.confirm("Are you sure you want to log out?");
-  
     if (confirmed) {
       localStorage.removeItem("jwtToken");
       localStorage.removeItem("avatarUrl");
       localStorage.removeItem("username");
       // localStorage.removeItem("location");
       localStorage.removeItem("role");
-  
       setUserInfo({
         username: "",
         email: "",
       });
-  
       dispatch(saveSelectedMenu("/Home", "Home"));
     }
   };
-
   const [userInfo, setUserInfo] = useState({
     username: "",
     email: "",

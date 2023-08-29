@@ -57,11 +57,12 @@ function SignIn(props) {
 
           <h1 style={{ fontStyle: "italic" }}>SB-Weather</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa
+          Welcome to SB-Weather - your reliable source for weather information
+            every day! At WeatherHub, we are committed to providing you with the
+            most accurate and detailed weather information from around the
+            world. With a user-friendly and intuitive interface, you can easily
+            look up information about temperature, humidity, wind speed, and
+            daily forecasts.
           </p>
         </div>
         <div className={styles["right-signIn"]}>

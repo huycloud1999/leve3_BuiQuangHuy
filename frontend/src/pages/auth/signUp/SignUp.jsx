@@ -6,7 +6,7 @@ import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import{url} from '../../../global/Global.js'
+import { url } from "../../../global/Global.js";
 import { useNavigate } from "react-router-dom";
 function SignUp() {
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ function SignUp() {
         .oneOf([Yup.ref("password"), null], "Passwords must match.")
         .required("Confirm Password is required."),
     }),
-    onSubmit: async (values,{ setSubmitting }) => {
+    onSubmit: async (values, { setSubmitting }) => {
       const { confirmPassword, ...dataToSend } = values;
       if (!isDateValid()) {
         setSubmitting(false); // Allow resubmission after fixing the error
@@ -83,8 +83,8 @@ function SignUp() {
         );
         console.log(response.data);
         alert("Sign up successful. Please login to continue.");
-         navigate('/signin')
-        Navigate("/signin")
+        navigate("/signin");
+        Navigate("/signin");
       } catch (error) {
         console.error(error.response.data.message);
         setErrorMessage(error.response.data.message);
@@ -99,17 +99,27 @@ function SignUp() {
           <img src={logo} alt="" />
           <h1 style={{ fontStyle: "italic" }}>SB-Weather</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-            Nulla consequat massa
+            Welcome to SB-Weather - your reliable source for weather information
+            every day! At WeatherHub, we are committed to providing you with the
+            most accurate and detailed weather information from around the
+            world. With a user-friendly and intuitive interface, you can easily
+            look up information about temperature, humidity, wind speed, and
+            daily forecasts. 
           </p>
         </div>
         <div className={styles["right-signUp"]}>
           <form onSubmit={formik.handleSubmit}>
             <h1>Sign Up</h1>
-            <h4 style={{ textAlign: "center", color: "red",fontStyle: "italic",fontSize:'20px' }}>{errorMessage}</h4>
+            <h4
+              style={{
+                textAlign: "center",
+                color: "red",
+                fontStyle: "italic",
+                fontSize: "20px",
+              }}
+            >
+              {errorMessage}
+            </h4>
             <div className={styles["name"]}>
               <input
                 type="text"
@@ -152,9 +162,7 @@ function SignUp() {
               }
             />
             {formik.touched.email && formik.errors.email && (
-              <span className={styles.errorMessage}>
-                {formik.errors.email}
-              </span>
+              <span className={styles.errorMessage}>{formik.errors.email}</span>
             )}
             <input
               type="text"

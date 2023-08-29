@@ -115,11 +115,13 @@ function Users() {
   };
   const handleAddUser = async () => {
     try {
+      const token = localStorage.getItem("jwtToken");
       const response = await axios.post(
         `${url}/api/v1/auth/signup`,
         userInfo 
       );
-
+        alert("Thêm user thành công")
+        fetchDataUsers(token)
         setShowAddUserForm(false);
         console.log(response.data.message)
         
